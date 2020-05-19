@@ -170,7 +170,7 @@ class iarduino_I2C_4LED{																						//
 		uint8_t				_codeSymbol				(char											);			//	Объявляем  функцию закодировать символ для его вывода				(Параметр:  символ).
 		void				_printNumI				(int16_t										);			//	Объявляем  функцию вывод целого числа.
 		void				_printNumF				(double											);			//	Объявляем  функцию вывод числа с плавающей точкой.
-		void				_printNumS				(char*											);			//	Объявляем  функцию вывод строки.
+		void				_printNumS				(const char*									);			//	Объявляем  функцию вывод строки.
 		void				_printNumA				(int i[]										);			//	Объявляем  функцию вывод массива.
 		void				_printNumT				(uint8_t, uint8_t								);			//	Объявляем  функцию вывод времени.
 		void				_sortStyle				(char,uint8_t,uint8_t,uint8_t,uint8_t,uint8_t	);			//	Объявляем  функцию сортировка параметров вывода.
