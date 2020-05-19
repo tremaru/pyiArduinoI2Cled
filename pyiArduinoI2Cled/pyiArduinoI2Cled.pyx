@@ -89,31 +89,36 @@ cdef class pyiArduinoI2Cled:
         else:
                 return self.c_module.setPullI2C(True)
 
-    def scheme(var):
+    def scheme(self, var):
         self.c_module.scheme(var)
 
-    def fps(freq):
+    def fps(self, freq):
         self.c_module.fps(freq)
 
-    def light(level):
+    def light(self, level):
         self.c_module.light(level)
 
-    def turn(flg):
+    def turn(self, flg):
         self.c_module.turn(flg)
 
-    def clear():
+    def clear(self):
         self.c_module.clear()
 
-    def point(pos, flg):
+    def point(self, pos, flg):
         self.c_module.point(pos, flg)
 
-    def blink(pos, flg):
+    def blink(self, pos, flg):
         self.c_module.blink(pos, flg)
 
-    def frequ(f):
+    def frequ(self, f):
         self.c_module.frequ(f)
 
-    def setLED(a, b, c, d, e):
+    def setLED(self, a, b, c, d, e):
         self.c_module.setLED(a, b, c, d, e)
 
-    def print(
+    def print(self, a, b, c, d, e, f, g):
+        if isinstance(a, str):
+            bt = bytearray(a, "utf-8")
+            self.c_module.printStr(bt)
+        else:
+            self.c_module.print(a, b, c, d, e, f, g)

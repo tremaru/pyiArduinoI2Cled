@@ -1,6 +1,16 @@
 cdef extern from "iarduino_I2C_4LED.cpp":
     pass
 
+cdef extern from "itoa.cpp":
+    pass
+
+cdef extern from "dtostrf.cpp":
+    pass
+
+cdef extern from "WString.cpp":
+    pass
+
+
 cdef extern from "iarduino_I2C_4LED.h":
     cdef cppclass iarduino_I2C_4LED:
         iarduino_I2C_4LED() except +
@@ -58,4 +68,4 @@ cdef extern from "iarduino_I2C_4LED.h":
 #       void print(double, int, int, int, int, int, char)
         void print(int, char, int, int, int, int, int)
         void printStr "print"(char*)
-        void printArr "print"(int*)
+        #void printArr "print"(int*)
