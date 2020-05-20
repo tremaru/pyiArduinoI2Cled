@@ -6,7 +6,7 @@ def readme():
         return readme.read()
 
 setup(name='pyiArduinoI2Cled',
-    version='X.X.X',
+    version='1.0.0',
     description='iarduino.ru module for Raspberry Pi',
     long_description=readme(),
     classifiers=[
