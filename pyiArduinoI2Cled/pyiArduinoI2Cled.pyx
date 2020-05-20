@@ -2,6 +2,8 @@
 # cython: language_level = 3
 
 from iarduino_I2C_4LED cimport iarduino_I2C_4LED
+import ctypes
+#import numpy as np
 #from time import sleep
 
 DEF_CHIP_ID_FLASH =  0x3C
@@ -22,11 +24,27 @@ REG_SHT_TEM_L        =  0x11
 REG_SHT_HUM_L        =  0x13
 REG_SHT_TEM_CHANGE   =  0x15
 REG_SHT_HUM_CHANGE   =  0x16
-# Позиция битов и флагов:
-SHT_TEM_NEGATIVE     =  0x80
-SHT_FLG_CHANGED_HUM  =  0x04
-SHT_FLG_CHANGED_TEM  =  0x02
-SHT_FLG_CHANGED      =  0x01
+
+#
+DEC                  =  10
+LEN1                 =  11
+LEN2                 =  12
+LEN3                 =  13
+LEN4                 =  14
+HEX                  =  16
+TIME                 =  17
+TEMP                 =  18
+LEFT                 =  19
+RIGHT                =  20
+POS1                 =  21
+POS2                 =  22
+POS3                 =  23
+POS4                 =  24
+LED_CA               =  0xC0
+LED_CC               =  0x40
+
+
+
 
 NO_BEGIN = 1
 
@@ -116,9 +134,50 @@ cdef class pyiArduinoI2Cled:
     def setLED(self, a, b, c, d, e):
         self.c_module.setLED(a, b, c, d, e)
 
-    def print(self, a, b, c, d, e, f, g):
+    def print(self, a=255, b=255, c=255, d=255, e=255, f=255, g=255):
+
+        char_index = None
+        args = [a, b, c, d, e, f, g]
+
+        for i in args:
+            if isinstance(i, str):
+                char_index = args.index(i)
+
+        cdef int ca[4]
+
         if isinstance(a, str):
+
             bt = bytearray(a, "utf-8")
             self.c_module.printStr(bt)
+
+        elif isinstance(a, list):
+
+            for i in xrange(len(ca)):
+                ca[i] = a[i]
+
+            self.c_module.printArr(ca)
+
+        elif char_index is not None:
+
+            bt = bytearray(args[char_index], "utf-8")
+            del args[char_index]
+
+            if isinstance(a, int):
+
+                self.c_module.print(a, int(bt[0]), int(args[1]), int(args[2]), int(args[3]), int(args[4]), int(args[5]))
+
+            if isinstance(a, float):
+
+                self.c_module.printFloatChar(a, int(bt[0]), int(args[1]), int(args[2]), int(args[3]), int(args[4]), int(args[5]))
+
+        elif isinstance(a, float):
+
+            self.c_module.printFloatNoChar(a, b, c, d, e, f)
+
+        elif isinstance(a, int):
+
+            self.c_module.printIntNoChar(a, b, c, d, e, f)
+
         else:
-            self.c_module.print(a, b, c, d, e, f, g)
+
+            return
