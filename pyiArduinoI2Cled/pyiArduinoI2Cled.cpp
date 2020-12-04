@@ -2755,7 +2755,7 @@ static PyObject *__pyx_pf_16pyiArduinoI2Cled_16pyiArduinoI2Cled_16pyiArduinoI2Cl
  *     def frequ(self, f):
  *         self.c_module.frequ(f)             # <<<<<<<<<<<<<<
  * 
- *     def setLED(self, a, b, c, d, e):
+ *     def setLED(self, a=0, b=0, c=0, d=0, e=False):
  */
   __pyx_t_1 = __Pyx_PyInt_As_unsigned_char(__pyx_v_f); if (unlikely((__pyx_t_1 == (unsigned char)-1) && PyErr_Occurred())) __PYX_ERR(0, 132, __pyx_L1_error)
   __pyx_v_self->c_module.frequ(__pyx_t_1);
@@ -2783,7 +2783,7 @@ static PyObject *__pyx_pf_16pyiArduinoI2Cled_16pyiArduinoI2Cled_16pyiArduinoI2Cl
 /* "pyiArduinoI2Cled/pyiArduinoI2Cled.pyx":134
  *         self.c_module.frequ(f)
  * 
- *     def setLED(self, a, b, c, d, e):             # <<<<<<<<<<<<<<
+ *     def setLED(self, a=0, b=0, c=0, d=0, e=False):             # <<<<<<<<<<<<<<
  *         self.c_module.setLED(a, b, c, d, e)
  * 
  */
@@ -2802,6 +2802,11 @@ static PyObject *__pyx_pw_16pyiArduinoI2Cled_16pyiArduinoI2Cled_16pyiArduinoI2Cl
   {
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_a,&__pyx_n_s_b,&__pyx_n_s_c,&__pyx_n_s_d,&__pyx_n_s_e,0};
     PyObject* values[5] = {0,0,0,0,0};
+    values[0] = ((PyObject *)__pyx_int_0);
+    values[1] = ((PyObject *)__pyx_int_0);
+    values[2] = ((PyObject *)__pyx_int_0);
+    values[3] = ((PyObject *)__pyx_int_0);
+    values[4] = ((PyObject *)Py_False);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
@@ -2822,44 +2827,53 @@ static PyObject *__pyx_pw_16pyiArduinoI2Cled_16pyiArduinoI2Cled_16pyiArduinoI2Cl
       kw_args = PyDict_Size(__pyx_kwds);
       switch (pos_args) {
         case  0:
-        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_a)) != 0)) kw_args--;
-        else goto __pyx_L5_argtuple_error;
+        if (kw_args > 0) {
+          PyObject* value = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_a);
+          if (value) { values[0] = value; kw_args--; }
+        }
         CYTHON_FALLTHROUGH;
         case  1:
-        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_b)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("setLED", 1, 5, 5, 1); __PYX_ERR(0, 134, __pyx_L3_error)
+        if (kw_args > 0) {
+          PyObject* value = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_b);
+          if (value) { values[1] = value; kw_args--; }
         }
         CYTHON_FALLTHROUGH;
         case  2:
-        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_c)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("setLED", 1, 5, 5, 2); __PYX_ERR(0, 134, __pyx_L3_error)
+        if (kw_args > 0) {
+          PyObject* value = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_c);
+          if (value) { values[2] = value; kw_args--; }
         }
         CYTHON_FALLTHROUGH;
         case  3:
-        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_d)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("setLED", 1, 5, 5, 3); __PYX_ERR(0, 134, __pyx_L3_error)
+        if (kw_args > 0) {
+          PyObject* value = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_d);
+          if (value) { values[3] = value; kw_args--; }
         }
         CYTHON_FALLTHROUGH;
         case  4:
-        if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_e)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("setLED", 1, 5, 5, 4); __PYX_ERR(0, 134, __pyx_L3_error)
+        if (kw_args > 0) {
+          PyObject* value = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_e);
+          if (value) { values[4] = value; kw_args--; }
         }
       }
       if (unlikely(kw_args > 0)) {
         if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "setLED") < 0)) __PYX_ERR(0, 134, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
-      goto __pyx_L5_argtuple_error;
     } else {
-      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-      values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
-      values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
-      values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+      switch (PyTuple_GET_SIZE(__pyx_args)) {
+        case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+        CYTHON_FALLTHROUGH;
+        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+        CYTHON_FALLTHROUGH;
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        CYTHON_FALLTHROUGH;
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
     }
     __pyx_v_a = values[0];
     __pyx_v_b = values[1];
@@ -2869,7 +2883,7 @@ static PyObject *__pyx_pw_16pyiArduinoI2Cled_16pyiArduinoI2Cled_16pyiArduinoI2Cl
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("setLED", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 134, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("setLED", 0, 0, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 134, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pyiArduinoI2Cled.pyiArduinoI2Cled.pyiArduinoI2Cled.setLED", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2894,7 +2908,7 @@ static PyObject *__pyx_pf_16pyiArduinoI2Cled_16pyiArduinoI2Cled_16pyiArduinoI2Cl
 
   /* "pyiArduinoI2Cled/pyiArduinoI2Cled.pyx":135
  * 
- *     def setLED(self, a, b, c, d, e):
+ *     def setLED(self, a=0, b=0, c=0, d=0, e=False):
  *         self.c_module.setLED(a, b, c, d, e)             # <<<<<<<<<<<<<<
  * 
  *     def print(self, a=255, b=255, c=255, d=255, e=255, f=255, g=255):
@@ -2909,7 +2923,7 @@ static PyObject *__pyx_pf_16pyiArduinoI2Cled_16pyiArduinoI2Cled_16pyiArduinoI2Cl
   /* "pyiArduinoI2Cled/pyiArduinoI2Cled.pyx":134
  *         self.c_module.frequ(f)
  * 
- *     def setLED(self, a, b, c, d, e):             # <<<<<<<<<<<<<<
+ *     def setLED(self, a=0, b=0, c=0, d=0, e=False):             # <<<<<<<<<<<<<<
  *         self.c_module.setLED(a, b, c, d, e)
  * 
  */

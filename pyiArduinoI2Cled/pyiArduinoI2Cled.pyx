@@ -131,7 +131,7 @@ cdef class pyiArduinoI2Cled:
     def frequ(self, f):
         self.c_module.frequ(f)
 
-    def setLED(self, a, b, c, d, e):
+    def setLED(self, a=0, b=0, c=0, d=0, e=False):
         self.c_module.setLED(a, b, c, d, e)
 
     def print(self, a=255, b=255, c=255, d=255, e=255, f=255, g=255):
