@@ -11,6 +11,8 @@
 #include <stdint.h>                     // Подключаем библиотеку с макросами целочисленных типов
 #include <chrono>
 
+bool fail = false;
+
 //  Определяем полиморфный класс
 class iarduino_I2C_BASE{
         public:
@@ -88,7 +90,10 @@ class iarduino_I2C: public iarduino_I2C_BASE{
                         // ревизии 2.0 (выпущена после 2012 года) - i2c-1,
                         // если ревизия 1.0 - i2c-0. Узнать номер шины можно
                         // вызвав ls /dev в консоли.
-                        if((file_i2c = open(filename, O_RDWR))<0) return;
+                        if ((file_i2c = open(filename, O_RDWR))<0) {
+                            fail = true;
+                            return;
+                        }
                 }
 
 //      Функция чтения одного байта из регистра модуля:

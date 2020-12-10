@@ -1,9 +1,14 @@
 #include "iarduino_I2C_4LED.h"																									//
+//#include <iostream>
 																																//
 //		Инициализация модуля:																									//	Возвращаемое значение: результат инициализации.
 bool	iarduino_I2C_4LED::begin			(void){																				//	Параметр: отсутствует
 		//	Инициируем работу с шиной I2C:																						//
 			objI2C->begin(100);																									//	Инициируем передачу данных по шине I2C на скорости 100 кГц.
+            if (fail) {
+                //std::cout << "begin fail" << '\n';
+                return false;
+            }
 		//	Если адрес не указан, то ищим модуль на шине I2C:																	//
 			if(valAddrTemp==0){																									//
 				for(int i=1; i<127; i++){																						//	Проходим по всем адресам на шине I2C
@@ -41,8 +46,19 @@ bool	iarduino_I2C_4LED::reset			(void){																				//	Параметр:	
 				data[0] |= 0b10000000;																							//	Устанавливаем бит «SET_RESET»
 				if(_writeBytes(REG_BITS_0,1)==false){return false;}																//	Записываем 1 байт в регистр «BITS_0» из массива «data».
 			//	Ждём установки флага завершения перезагрузки:																	//
-				do{ if(_readBytes(REG_FLAGS_0,1)==false){return false;} }														//	Читаем 1 байт регистра «REG_FLAGS_0» в массив «data».
-				while( (data[0]&0b10000000) == 0);																				//	Повторяем чтение пока не установится флаг «FLG_RESET».
+                delay(500);
+                /*
+                int counter = 0;
+				do { 
+                    if(_readBytes(REG_FLAGS_0,1)==false) {
+                        return false;
+                    } 
+                    delay(1);
+                    counter++;
+                }														//	Читаем 1 байт регистра «REG_FLAGS_0» в массив «data».
+				while(((data[0]&0b10000000) == 0) || (counter < 50));																				//	Повторяем чтение пока не установится флаг «FLG_RESET».
+                */
+                //std::cout << "i'm here" << '\n';
 				return true;																									//
 			}else{																												//	Иначе, если модуль не инициализирован, то ...
 				return false;																									//	Возвращаем ошибку
