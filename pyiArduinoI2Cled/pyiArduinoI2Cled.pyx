@@ -51,11 +51,14 @@ NO_BEGIN = 1
 cdef class pyiArduinoI2Cled:
     cdef iarduino_I2C_4LED c_module
 
-    def __cinit__(self, address=None, auto=None):
+    def __cinit__(self, address=None, auto=None, bus=None):
 
         if address is not None:
 
             self.c_module = iarduino_I2C_4LED(address)
+
+            if bus is not None:
+                self.changeBus(bus)
 
             if auto is None:
                 #sleep(.5)
@@ -71,6 +74,9 @@ cdef class pyiArduinoI2Cled:
         else:
 
             self.c_module = iarduino_I2C_4LED()
+
+            if bus is not None:
+                self.changeBus(bus)
 
             if auto is None:
                 #sleep(.5)
@@ -181,3 +187,6 @@ cdef class pyiArduinoI2Cled:
         else:
 
             return
+
+    def changeBus(self, bus):
+        return self.c_module.changeBus(bytes(bus, 'utf-8'))

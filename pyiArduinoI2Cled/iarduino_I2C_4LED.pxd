@@ -1,3 +1,8 @@
+from libcpp.string cimport string
+
+cdef extern from "iarduino_I2C_PI.cpp":
+    pass
+
 cdef extern from "iarduino_I2C_4LED.cpp":
     pass
 
@@ -69,3 +74,4 @@ cdef extern from "iarduino_I2C_4LED.h":
         void print(int, char, int, int, int, int, int)
         void printStr "print"(char*)
         void printArr "print"(int*)
+        void changeBus(string)
